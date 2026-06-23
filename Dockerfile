@@ -19,6 +19,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY predict.py .
 COPY app.py .
+COPY gradcam.py .
+COPY report_generator.py .
 
 # Place your trained weights here at build time OR mount at runtime.
 # To bake the model into the image (simplest for HF Spaces):
