@@ -1,4 +1,4 @@
-# ── CXR Report Copilot — Dockerfile ──────────────────────────────────────────
+# — CXR Report Copilot — Dockerfile ————————————————————————————————
 # Targets Hugging Face Spaces (port 7860) and any standard Docker host.
 # CPU-only by default; swap the base image for GPU if needed.
 
@@ -21,16 +21,17 @@ COPY predict.py .
 COPY app.py .
 COPY gradcam.py .
 COPY report_generator.py .
+COPY gradio_app.py .
+COPY start.sh .
 
 # Place your trained weights here at build time OR mount at runtime.
-# To bake the model into the image (simplest for HF Spaces):
-#   COPY stage3_multitask_best.pt .
-# To mount at runtime:
-#   docker run -v /path/to/stage3_multitask_best.pt:/app/stage3_multitask_best.pt ...
 COPY stage3_multitask_best.pt .
 
-# HF Spaces expects port 7860; change to 8000 for local dev if you prefer
+# HF Spaces expects port 7860
 ENV MODEL_PATH=/app/stage3_multitask_best.pt
+ENV API_URL=http://localhost:8000/predict
 EXPOSE 7860
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+RUN chmod +x start.sh
+
+CMD ["bash", "start.sh"]
