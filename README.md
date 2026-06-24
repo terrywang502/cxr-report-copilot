@@ -2,8 +2,9 @@
 
 **A deployed, multimodal chest X-ray triage assistant** — classifies thoracic pathologies, and is being extended with explainability (Grad-CAM) and LLM-generated draft reports (Claude API).
 
-🔗 **Live Demo:** [terrywang502-cxr-report-copilot.hf.space/docs](https://terrywang502-cxr-report-copilot.hf.space/docs)
+🔗 **Live Demo (UI):** [terrywang502-cxr-report-copilot.hf.space](https://terrywang502-cxr-report-copilot.hf.space)
 
+🔗 **API Docs:** [terrywang502-cxr-report-copilot.hf.space/docs](https://terrywang502-cxr-report-copilot.hf.space/docs)
 > ⚠️ For research/demo purposes only — not for clinical use.
 
 ---
@@ -87,7 +88,7 @@ Docker container → deployed on Hugging Face Spaces
 
 ## Tech stack
 
-`Python` · `PyTorch` · `EfficientNet-B0` · `Albumentations` · `FastAPI` · `Docker` · `Hugging Face Spaces`
+`Python` · `PyTorch` · `EfficientNet-B0` · `Albumentations` · `FastAPI` · `Gradio` · `Docker` · `Hugging Face Spaces` · `Claude API`
 
 ---
 
@@ -113,9 +114,13 @@ uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 
 ```
 cxr-report-copilot/
-├── predict.py          # Model definition + inference logic
-├── app.py               # FastAPI application
-├── Dockerfile            # Container definition
+├── predict.py            # Model definition + inference logic
+├── app.py                # FastAPI application
+├── gradcam.py            # Grad-CAM explainability
+├── report_generator.py   # Claude API report generation
+├── gradio_app.py         # Gradio web interface
+├── start.sh              # Startup script (FastAPI + Gradio)
+├── Dockerfile
 ├── requirements.txt
 └── README.md
 ```
