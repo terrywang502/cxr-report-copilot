@@ -15,7 +15,7 @@
 | **Phase 1** | Model inference API (FastAPI) + Docker containerization + public deployment | **Complete** |
 | **Phase 2** | Grad-CAM explainability — visualize model attention over X-ray findings |  **Complete** |
 | **Phase 3** | LLM-generated draft radiology reports via Claude API |  **Complete** |
-| **Phase 4** | Interactive front-end (upload → prediction → heatmap → report) | 🔜 Planned |
+| **Phase 4** | Interactive front-end (upload → prediction → heatmap → report) | **Complete**  |
 
 This project is being built incrementally and shipped at each milestone rather than held back until "finished" — Phase 1 is live and usable today.
 
